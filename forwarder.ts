@@ -1,4 +1,6 @@
 import { opine } from "./deps.ts";
+import { getIP } from "https://deno.land/x/get_ip@v2.0.0/mod.ts";
+
 
 export class Forwarder {
     
@@ -6,7 +8,7 @@ export class Forwarder {
 
     public constructor(private port: number, private targetURL: string, private pathToCertFile: string, private pathToCertKeyFile: string) {}
 
-    public activate() {
+    public activate(): void {
         this.app.get('/', (req: any, res: any) => {
             const html = `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url='${this.targetURL}'" /></head><body><p>Redirecting to https: <a href="${this.targetURL}">${this.targetURL}</a></p></body></html>`
             res.send(html);
@@ -17,7 +19,7 @@ export class Forwarder {
         } else {
             console.log(`using certFile from ${this.pathToCertFile}`)
             console.log(`using keyFile from ${this.pathToCertKeyFile}`)
-            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, () => console.log(`server will forward requests from http://localhost:${this.port} to ${targetURL} 🚀`));
+            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, async() => console.log(`server will forward requests from https://<domain-connected-to-${await getIP}>:${this.port} to ${targetURL} 🚀`));
         }
     }
 
