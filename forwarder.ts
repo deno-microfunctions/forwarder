@@ -17,7 +17,7 @@ export class Forwarder {
         } else {
             console.log(`using certFile from ${this.pathToCertFile}`)
             console.log(`using keyFile from ${this.pathToCertKeyFile}`)
-            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, () => console.log(`server is listening on https://localhost:${this.port} 🚀`));
+            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, () => console.log(`server will forward requests from http://localhost:${this.port} to ${targetURL} 🚀`));
         }
     }
 
