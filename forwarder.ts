@@ -10,8 +10,9 @@ export class Forwarder {
 
     public activate(): void {
         this.app.get('/', (req: any, res: any) => {
-            const html = `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url='${this.targetURL}'" /></head><body><p>Redirecting to https: <a href="${this.targetURL}">${this.targetURL}</a></p></body></html>`
-            res.send(html);
+            // const html = `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url='${this.targetURL}'" /></head><body><p>Redirecting to https: <a href="${this.targetURL}">${this.targetURL}</a></p></body></html>`
+            // res.send(html);
+            res.redirect(this.targetURL)
         });
         
         if ((port.toString()).indexOf('443') === -1) {
