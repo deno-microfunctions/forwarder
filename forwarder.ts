@@ -19,7 +19,7 @@ export class Forwarder {
         } else {
             console.log(`using certFile from ${this.pathToCertFile}`)
             console.log(`using keyFile from ${this.pathToCertKeyFile}`)
-            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, async() => console.log(`server will forward requests from https://<domain-connected-to-${await getIP}>:${this.port} to ${targetURL} 🚀`));
+            this.app.listen({ port, certFile: this.pathToCertFile, keyFile: this.pathToCertKeyFile }, async() => console.log(`server will forward requests from https://<domain-connected-to-${await getIP()}>:${this.port} to ${targetURL} 🚀`));
         }
     }
 
