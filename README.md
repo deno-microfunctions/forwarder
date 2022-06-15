@@ -15,8 +15,9 @@ deno run --allow-read --allow-net https://deno.land/x/forwarder/forwarder.ts <po
 or via pm2 
 
 ```sh
-
-pm2 start  --interpreter="deno" --interpreter-args="run --allow-net --allow-read" https://deno.land/x/forwarder/forwarder.ts
+git clone https://github.com/deno-microfunctions/forwarder.git
+cd forwarder
+pm2 start -n "deno-forwarder"  --interpreter="deno" --interpreter-args="run --allow-net --allow-read" ./forwarder.ts -- <port> <targetURL> <pathToCertFile> <pathToCertKeyFile>
 
 ```
 
